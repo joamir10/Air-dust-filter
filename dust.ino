@@ -11,6 +11,7 @@ float dustDensity = 0;
 float voMeasured1 = 0;
 float calcVoltage1 = 0;
 float dustDensity1 = 0;
+float percent = 0;
 void setup() {
   // put your setup code here, to run once:
  Serial.begin(9600);
@@ -33,9 +34,13 @@ void loop() {
   dustDensity = 170 * calcVoltage - 0.1;
   calcVoltage1 = voMeasured1 * (5.0 / 1024.0);
   dustDensity1 = 170 * calcVoltage1 - 0.1;
+  percent = ((dustDensity - dustDensity1) / dustDensity) * 100;
 Serial.print("dustDensity1= ");  
 Serial.print(dustDensity);
-Serial.print("      dustDensity2= ");  
-Serial.println(dustDensity1);
+Serial.print("  dustDensity2= ");  
+Serial.print(dustDensity1);
+Serial.print(" Filteration percent = ");  
+Serial.print(percent);
+Serial.println("%");
 delay(1000);
 }
